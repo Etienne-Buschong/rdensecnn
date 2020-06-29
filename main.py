@@ -19,8 +19,8 @@ def load_data(dataset_name, batch_size):
             transforms.RandomAffine(180, (0.125, 0.125)),
             transforms.Resize(32),
             transforms.ToTensor()])
-        fashion_mnist_train = datasets.FashionMNIST('../data', train=True, download=True, transform=trans)
-        fashion_mnist_test = datasets.FashionMNIST('../data', train=False, download=True, transform=trans)
+        fashion_mnist_train = datasets.FashionMNIST('./datasets', train=True, download=True, transform=trans)
+        fashion_mnist_test = datasets.FashionMNIST('./datasets', train=False, download=True, transform=trans)
         train_loader = torch.utils.data.DataLoader(fashion_mnist_train, batch_size=batch_size, shuffle=True)
         test_loader = torch.utils.data.DataLoader(fashion_mnist_test, batch_size=batch_size, shuffle=False)
         num_classes = 10
@@ -47,10 +47,10 @@ def parse_arguments():
                         help="flag (0/1) to indicate if gpu should be used (default: 1)")
     parser.add_argument(
         "--log-interval", type=int, default=20, help="number of batches after which to log loss (default: 20)")
-    parser.add_argument("--model-path", type=str, default="./model.weights",
+    parser.add_argument("--model-path", type=str, default="./model_data/model.weights",
                         help="path to model weights. After training weights will be saved there and if already present,"
                              "training is skipped")
-    parser.add_argument("--model-checkpoint-path", type=str, default="./model.weights.chckpt",
+    parser.add_argument("--model-checkpoint-path", type=str, default="./model_data/model.weights.chckpt",
                         help="path to model checkpoint file in case that checkpoints during training should be created")
 
     # RDenseCNN-specific arguments
