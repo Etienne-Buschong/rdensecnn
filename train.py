@@ -1,12 +1,9 @@
 import os
 
 import torch
-from rich.console import Console
 from torch.optim.lr_scheduler import StepLR
 
 from utils import calculate_correct_predictions
-
-console = Console()
 
 
 def train(model, optimizer, loss_fn, epochs, train_loader, device, model_chckpt_path, checkpoint_save_interval,

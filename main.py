@@ -3,14 +3,11 @@ import os
 
 import torch
 import torch.utils.data
-from rich.console import Console
 from torchvision import datasets, transforms
 
 from RDenseCnn import RDenseCNN
 from train import train
 from test import test
-
-console = Console()
 
 
 def load_data(dataset_name, batch_size):
