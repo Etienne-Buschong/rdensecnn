@@ -14,7 +14,7 @@ def test(model, test_loader, device, num_classes, labels):
             out = model(images)
             _, predictions = torch.max(out, 1)
             real_batch_size = out.size()[0]
-            comp, correct = calculate_correct_predictions(targets, out)
+            comp, c = calculate_correct_predictions(targets, out)
             for i in range(real_batch_size):
                 correct[targets[i]] += comp[i].item()
                 total[targets[i]] += 1

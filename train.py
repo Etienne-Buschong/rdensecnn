@@ -10,7 +10,7 @@ def train(model, optimizer, loss_fn, epochs, train_loader, device, model_chckpt_
           model_path, load_chckpt, log_interval):
     epoch_start = 0
 
-    scheduler = StepLR(optimizer, 30, 0.1)
+    scheduler = StepLR(optimizer, int(epochs * 0.5), 0.1)
 
     if load_chckpt and os.path.isfile(model_chckpt_path):
         checkpoint = torch.load(model_chckpt_path)

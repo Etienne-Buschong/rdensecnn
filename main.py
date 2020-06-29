@@ -12,12 +12,14 @@ from test import test
 
 def load_data(dataset_name, batch_size):
     if dataset_name == "fmnist":
-        trans = transforms.Compose([
-            transforms.RandomAffine(180, (0.125, 0.125)),
-            transforms.Resize(32),
+        trans_train = transforms.Compose([
+            transforms.RandomHorizontalFlip(),
+            transforms.Resize(36),
+            transforms.RandomCrop(32),
             transforms.ToTensor()])
-        fashion_mnist_train = datasets.FashionMNIST('./datasets', train=True, download=True, transform=trans)
-        fashion_mnist_test = datasets.FashionMNIST('./datasets', train=False, download=True, transform=trans)
+        trans_test = transforms.Compose([transforms.Resize(32), transforms.ToTensor()])
+        fashion_mnist_train = datasets.FashionMNIST('./datasets', train=True, download=True, transform=trans_train)
+        fashion_mnist_test = datasets.FashionMNIST('./datasets', train=False, download=True, transform=trans_test)
         train_loader = torch.utils.data.DataLoader(fashion_mnist_train, batch_size=batch_size, shuffle=True)
         test_loader = torch.utils.data.DataLoader(fashion_mnist_test, batch_size=batch_size, shuffle=False)
         num_classes = 10
