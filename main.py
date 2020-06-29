@@ -73,7 +73,7 @@ def main():
     weights_saved = os.path.isfile(args.model_path)
     chckpt_present = os.path.isfile(args.model_checkpoint_path)
     if not weights_saved:
-        console.print("[bold blue] (RDenseCNN) [bold blue] No saved weights found. Starting model training!")
+        print("[bold blue] (RDenseCNN) [bold blue] No saved weights found. Starting model training!")
         train(model, optimizer, loss_fn, args.epochs, train_loader, device,
               args.model_checkpoint_path, args.checkpoint_save_interval,
               args.model_path, chckpt_present, args.log_interval)
